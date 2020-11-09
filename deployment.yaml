@@ -12,11 +12,39 @@ spec:
     metadata:
       labels:
         app: sample-app
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/sample-app: runtime/default
+        seccomp.security.alpha.kubernetes.io/pod: runtime/default
     spec:
       containers:
-      - command:
-        - /app/sample-app
-        image: gitopsbook/sample-app:v0.1
-        name: sample-app
-        ports:
-        - containerPort: 8080
+        - command:
+            - /app/sample-app
+          image: gitopsbook/sample-app:v0.1
+          name: sample-app
+          ports:
+            - containerPort: 8080
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - AUDIT_WRITE
+                - CHOWN
+                - DAC_OVERRIDE
+                - FOWNER
+                - FSETID
+                - KILL
+                - MKNOD
+                - NET_BIND_SERVICE
+                - NET_RAW
+                - SETFCAP
+                - SETGID
+                - SETPCAP
+                - SETUID
+                - SYS_CHROOT
+            privileged: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: false 
+      automountServiceAccountToken: false
+  strategy: {}
+# sgined doc
