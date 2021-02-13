@@ -18,8 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: curl -sLf -o kubeaudit.tar.gz  https://github.com/Shopify/kubeaudit/releases/download/v0.12.0/kubeaudit_0.12.0_linux_amd64.tar.gz
-      - run: tar -zxvf kubeaudit.tar.gz
-      - run: chmod +x kubeaudit
-      - run: ./kubeaudit nonroot -f deployment.yaml &> errors
-      - run: if [ -s errors ] ; then cat errors; exit -1; fi
+      - name: Install kubeaudit
+        run: |
+          curl -sLf -o kubeaudit.tar.gz  https://github.com/Shopify/kubeaudit/releases/download/v0.12.0/kubeaudit_0.12.0_linux_amd64.tar.gz
+          tar -zxvf kubeaudit.tar.gz
+          chmod +x kubeaudit
+      - name: Run kubeaudit
+        run: |
+          ./kubeaudit nonroot -f deployment.yaml -e 0 &> errors
+          if [ -s errors ] ; then cat errors; exit -1; fi
