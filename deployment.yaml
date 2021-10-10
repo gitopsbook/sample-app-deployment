@@ -1,3 +1,4 @@
+# hacked
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,7 +17,9 @@ spec:
       containers:
       - command:
         - /app/sample-app
-        image: gitopsbook/sample-app:v0.1
+        image: gitopsbook/sample-app:v0.2
         name: sample-app
         ports:
         - containerPort: 8080
+        securityContext:
+          runAsNonRoot: true
