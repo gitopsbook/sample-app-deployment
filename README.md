@@ -3,7 +3,7 @@
 The repository contains Kubernetes manifests that defines the deployment of the
 [sample application](https://github.com/gitopsbook/sample-app).
 
-To deploy the application manually run the following command:
+To deploy/test the application manually run the following command:
 
 ```
 kubectl create ns sample-app
