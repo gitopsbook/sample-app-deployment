@@ -4,7 +4,7 @@ metadata:
   name: sample-app
 spec:
   replicas: 1
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 5
   selector:
     matchLabels:
       app: sample-app
