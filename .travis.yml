@@ -1,0 +1,8 @@
+language: bash
+install:
+  - curl -sLf -o kubeaudit.tar.gz https://github.com/Shopify/kubeaudit/releases/download/v0.22.1/kubeaudit_0.22.1_linux_amd64.tar.gz
+  - tar -zxvf kubeaudit.tar.gz
+  - chmod +x kubeaudit
+script:
+  - ./kubeaudit nonroot -f deployment.yaml &> errors
+  - if [ -s errors ] ; then cat errors; exit -1; fi
