@@ -8,3 +8,4 @@ spec:
     targetPort: 8080
   selector:
     app: sample-app
+  type: ClusterIP
