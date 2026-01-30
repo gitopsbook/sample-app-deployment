@@ -14,7 +14,7 @@ spec:
         app: sample-app
     spec:
       containers:
-        - image: paulbouwer/hello-kubernetes:1.10
+        - image: paulbouwer/hello-kubernetes:1.10.1
           name: sample-app
           ports:
             - containerPort: 8080
