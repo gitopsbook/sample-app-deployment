@@ -14,7 +14,8 @@ spec:
         app: sample-app
     spec:
       containers:
-        - image: paulbouwer/hello-kubernetes:1.10.1
+        - image: busybox:1.16
+          command: ["/bin/sleep", "3600"]
           name: sample-app
           ports:
             - containerPort: 8080
